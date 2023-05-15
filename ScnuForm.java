@@ -30,12 +30,18 @@ public class ScnuForm {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private String endtime;
 
-    private String location;
+    private String place;
 
     private String info;
+    
+    private String filename;
+
+    private String fileOriName;
+
+    private String fileurl;
 
     public Scnufes toEntity() {
-        return new Scnufes(id,festitle, starttime, endtime, location, info);
+        return new Scnufes(id, festitle, starttime, endtime, place, info, filename, fileOriName, fileurl);
     }
 
 }

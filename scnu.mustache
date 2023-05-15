@@ -14,16 +14,16 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="https://www.scnu.ac.kr/SCNU/main.do"><img src="scn.png">순행</a>
+          <a class="navbar-brand" href="https://www.scnu.ac.kr/SCNU/main.do"><img src="/scn.png">순행</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active" aria-current="page" href="/main">처음으로</a>
-              <a class="nav-link" href="#">게시판</a>
-              <a class="nav-link" href="#">카테고리</a>
-              <a class="nav-link" href="#">캘린더</a>
+              <a class="nav-link" href="#">동아리</a>
+              <a class="nav-link" href="#">장학</a>
+              <a class="nav-link" href="#">게시판1</a>
             </div>
           </div>
         </div>
@@ -34,25 +34,25 @@
       <svg class="bd-placeholder-img rounded" width="300" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 200x200" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">300x200 사진</text></svg>
     </div>
     
-    <form class="fesform" action="/scnu/create" method="post">
+    <form class="fesform" action="/scnu/create" method="post" enctype="multipart/form-data">
       <div class="mb-1">
         <label for="festivalinfo" class="form-label">행사 정보</label>
       </div>
       <div class="mb-2">
-        <label for="FormControlTextarea1" class="form-label1">행사 제목</label>
+        <label for="FormControlTextarea1" class="form-label1">제목</label>
         <input type="text" name="festitle" class="form-control" id="FormControlInput1" placeholder="제목을 입력해주세요.">
       </div>
       <div class="mb-3">
-        <label for="FormControlTextarea2" class="form-label2">행사 시작시간</label>
+        <label for="FormControlTextarea2" class="form-label2">시작일시</label>
         <input type="datetime-local" name="starttime" class="form-control" id="FormControlInput2" placeholder="시간을 입력해주세요.">
       </div>
       <div class="mb-4">
-        <label for="FormControlTextarea3" class="form-label3">행사 종료시간</label>
+        <label for="FormControlTextarea3" class="form-label3">종료일시</label>
         <input type="datetime-local" name="endtime" class="form-control" id="FormControlInput3" placeholder="시간을 입력해주세요.">
       </div>
       <div class="mb-5">
-        <label for="FormControlTextarea4" class="form-label4">행사 장소</label>
-        <select class="form-select" name="location" aria-label="Default select example">
+        <label for="FormControlTextarea4" class="form-label4">장소</label>
+        <select class="form-select" name="place" aria-label="Default select example">
           <option selected>장소를 선택해주세요.</option>
           <option value="a1">A1 대학본부</option>
           <option value="a2">A2 약학대학</option>
@@ -94,10 +94,14 @@
         </select>
       </div>
       <div class="mb-6">
-        <label for="FormControlTextarea5" class="form-label5">행사 소개</label>
+        <label for="FormControlTextarea5" class="form-label6">소개</label>
         <textarea class="form-control" name="info" rows="3" placeholder="행사 소개를 작성해주세요."></textarea>
       </div>
       <div class="mb-7">
+        <label for="FormControlTextarea3" class="form-label3">첨부파일</label>
+        <input type="file" name="files" class="form-control" id="FormControlInput4">
+      </div>
+      <div class="mb-8">
         <button type="submit" class="btn btn-primary">제출하기</button>
       </div>
     </form>
@@ -128,8 +132,12 @@
       font-weight: 900;
       font-size: large;
     }
+
+    .mb-6 { /* 제출버튼 */
+      margin-bottom: 10%;
+    }
   
-    .mb-7 { /* 제출버튼 */
+    .mb-8 { /* 제출버튼 */
       margin-top: 3%;
     }
   </style>

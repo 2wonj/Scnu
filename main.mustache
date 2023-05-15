@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Kakao 순행</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/src/main/resources/static/index.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+</head>
+<body class="p-0 m-0 border-0 bd-example bg-body-secondary">
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="https://www.scnu.ac.kr/SCNU/main.do"><img src="/scn.png">순행</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">동아리</a>
+                <a class="nav-link" href="#">장학</a>
+                <a class="nav-link" href="#">게시판1</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+    </header>
+    <main> 
+	    <div id="map" class="kakaomap" style="width: 100%; max-width:960px; height:500px;"></div>
+	    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64810ef38e28e2efe96520c8a962ec06"></script>
+      <script>
+		    var container = document.getElementById('map');
+		    var options = {
+			    center: new kakao.maps.LatLng(34.968901, 127.479367),
+			    level: 4
+		    };
+            var map = new kakao.maps.Map(container, options);
+
+            var zoomControl = new kakao.maps.ZoomControl();
+            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+            
+            var positions = [
+                {
+                  title: '공과대학 3호관', 
+                  latlng: new kakao.maps.LatLng(34.970130, 127.476420),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 공과대학 3호관 행사</div><div class ="d4"><a href="/main/d4"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '공과대학 2호관', 
+                  latlng: new kakao.maps.LatLng(34.969810, 127.477365),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 공과대학 2호관 행사</div><div class ="d4"><a href="/main/d3"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '공과대학 1호관', 
+                  latlng: new kakao.maps.LatLng(34.970800, 127.478000),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 공과대학 1호관 행사</div><div class ="d4"><a href="/main/d2"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '인문예술대학', 
+                  latlng: new kakao.maps.LatLng(34.968620, 127.477050),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 인문예술대학 행사</div><div class ="d4"><a href="/main/e8"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '사회과학대학', 
+                  latlng: new kakao.maps.LatLng(34.967450, 127.477695),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 사회과학대학 행사</div><div class ="d4"><a href="/main/e7"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '사범대학 3호관', 
+                  latlng: new kakao.maps.LatLng(34.968345, 127.478240),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 사범대학 3호관 행사</div><div class ="d4"><a href="/main/e5"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '사범대학 2호관', 
+                  latlng: new kakao.maps.LatLng(34.969610, 127.478580),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 사범대학 2호관 행사</div><div class ="d4"><a href="/main/e4"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '사범대학 1호관', 
+                  latlng: new kakao.maps.LatLng(34.969252, 127.478400),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 사범대학 1호관 행사</div><div class ="d4"><a href="/main/e3"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '미래창조관', 
+                  latlng: new kakao.maps.LatLng(34.967140, 127.478835),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 미래창조관 행사</div><div class ="d4"><a href="/main/e6"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '기초교육관', 
+                  latlng: new kakao.maps.LatLng(34.968050, 127.479190),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 기초교육관 행사</div><div class ="d4"><a href="/main/e2"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '학생회관', 
+                  latlng: new kakao.maps.LatLng(34.969020, 127.479790),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 학생회관 행사</div><div class ="d4"><a href="/main/e1"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '창조관', 
+                  latlng: new kakao.maps.LatLng(34.967320, 127.479655),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 창조관 행사</div><div class ="d4"><a href="/main/a6"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '인재관', 
+                  latlng: new kakao.maps.LatLng(34.966800, 127.479720),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 인재관 행사</div><div class ="d4"><a href="/main/a10"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '우정원', 
+                  latlng: new kakao.maps.LatLng(34.966580, 127.479590),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 우정원 행사</div><div class ="d4"><a href="/main/a12"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '청운관', 
+                  latlng: new kakao.maps.LatLng(34.966670, 127.480280),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 청운관 행사</div><div class ="d4"><a href="/main/a9"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '웅지관', 
+                  latlng: new kakao.maps.LatLng(34.966910, 127.481910),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 웅지관 행사</div><div class ="d4"><a href="/main/a13"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '향림관', 
+                  latlng: new kakao.maps.LatLng(34.967065, 127.481090),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 향림관 행사</div><div class ="d4"><a href="/main/a8"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '진리관', 
+                  latlng: new kakao.maps.LatLng(34.967610, 127.481090),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 진리관 행사</div><div class ="d4"><a href="/main/a5"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '학생생활관부속동', 
+                  latlng: new kakao.maps.LatLng(34.967770, 127.480500),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 학생생활관부속동 행사</div><div class ="d4"><a href="/main/a4"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '학생생활관관리동', 
+                  latlng: new kakao.maps.LatLng(34.967390, 127.480340),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 학생생활관관리동 행사</div><div class ="d4"><a href="/main/a7"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '운동장', 
+                  latlng: new kakao.maps.LatLng(34.967750, 127.482310),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 운동장 행사</div><div class ="d4"><a href="/main/a15"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '체육관', 
+                  latlng: new kakao.maps.LatLng(34.967650, 127.483680),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 체육관 행사</div><div class ="d4"><a href="/main/a17"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '열린광장', 
+                  latlng: new kakao.maps.LatLng(34.968300, 127.483580),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 열린광장 행사</div><div class ="d4"><a href="/main/a18"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '박물관', 
+                  latlng: new kakao.maps.LatLng(34.969400, 127.482980),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 박물관 행사</div><div class ="d4"><a href="/main/b1"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '70주년기념관', 
+                  latlng: new kakao.maps.LatLng(34.969430, 127.482160),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 70주년기념관 행사</div><div class ="d4"><a href="/main/b2"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '산학협력관', 
+                  latlng: new kakao.maps.LatLng(34.970620, 127.482990),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 산학협력관 행사</div><div class ="d4"><a href="/main/a6"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '생명대 1호관', 
+                  latlng: new kakao.maps.LatLng(34.970140, 127.482160),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 생명대 1호관 행사</div><div class ="d4"><a href="/main/b3"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '생명대 2호관', 
+                  latlng: new kakao.maps.LatLng(34.969920, 127.481260),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 생명대 2호관 행사</div><div class ="d4"><a href="/main/b4"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '약학대학', 
+                  latlng: new kakao.maps.LatLng(34.968820, 127.480880),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 약학대학 행사</div><div class ="d4"><a href="/main/a2"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '대학본부', 
+                  latlng: new kakao.maps.LatLng(34.968270, 127.480870),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 대학본부 행사</div><div class ="d4"><a href="/main/a1"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '평생교육원', 
+                  latlng: new kakao.maps.LatLng(34.966660, 127.483650),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 평생교육원 행사</div><div class ="d4"><a href="/main/f2"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '국제문화컨벤션관', 
+                  latlng: new kakao.maps.LatLng(34.966440, 127.484140),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 국제문화컨벤션관 행사</div><div class ="d4"><a href="/main/f1"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '도서관', 
+                  latlng: new kakao.maps.LatLng(34.969680, 127.479400),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 도서관 행사</div><div class ="d4"><a href="/main/c1"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '학군단', 
+                  latlng: new kakao.maps.LatLng(34.970400, 127.477080),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 학군단 행사</div><div class ="d4"><a href="/main/b9"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '창업보육센터', 
+                  latlng: new kakao.maps.LatLng(34.970750, 127.478820),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 창업보육센터 행사</div><div class ="d4"><a href="/main/d1"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '친환경농업센터', 
+                  latlng: new kakao.maps.LatLng(34.970510, 127.480130),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 친환경농업센터 행사</div><div class ="d4"><a href="/main/c2"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                },
+                {
+                  title: '순천대학교 어린이집', 
+                  latlng: new kakao.maps.LatLng(34.970950, 127.479320),
+                  data: '<div style="width: 200px; height: 30px; padding:5px;"> 순천대 어린이집 행사</div><div class ="c5"><a href="/main/c2"><button type="button" class="btn btn-dark">행사정보 바로가기</button></a></div>'
+                } 
+            ];
+       
+            for (let i = 0; i < positions.length; i ++) {
+              
+              var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+              var imageSize = new kakao.maps.Size(24, 35); 
+                 
+              var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+              
+              var marker = new kakao.maps.Marker({
+                  map: map,
+                  position: positions[i].latlng, 
+                  title : positions[i].title,
+                  image : markerImage,
+                  clickable: true 
+              });
+
+              
+              var infowindow = new kakao.maps.InfoWindow({
+                content : positions[i].data,
+                iwRemoveable : true,
+                removable : true
+              });
+
+             
+              marker.setMap(map);  
+
+              
+              kakao.maps.event.addListener(marker, 'click', ClickListener(map, marker, infowindow));
+            }
+
+            function ClickListener(map, marker, infowindow) {
+              return function() {
+                  infowindow.open(map, marker);
+              };
+            }
+	    </script>
+    </main>
+    <footer>
+      <div class="mb-5 container-fluid">
+        <hr>
+        <p>Are you manager? <a href="#"><button type="button" class="btn btn-info"> 로그인</button></a> <a href="#"><button type="button" class="btn btn-info">회원가입</button></a></p>
+      </div>  
+    </footer>
+</body>
+<style>
+    .kakaomap{
+      margin-top: 5%; 
+    }
+    p{
+      font-weight: 900;
+      font-size: large;
+    }
+</style>
+</html>

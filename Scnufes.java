@@ -37,8 +37,17 @@ public class Scnufes {
     private String endtime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));;
 
     @Column
-    private String location;
+    private String place;
 
     @Column
     private String info;
+
+    @Column
+    private String filename;
+
+    @Column
+	private String fileOriName;
+
+    @Column  
+	private String fileurl;
 }
